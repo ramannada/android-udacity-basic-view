@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="activity_horizontal_margin">64dp</dimen>
+    <dimen name="list_item_height">88dp</dimen>
+    <dimen name="category_left_padding">16dp</dimen>
+</resources>

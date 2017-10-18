@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/tan_background">
+
+
+
+        <ImageView
+            android:id="@+id/img_thumbnail"
+            android:layout_width="@dimen/list_item_height"
+            android:layout_height="@dimen/list_item_height"
+            />
+
+        <LinearLayout
+            android:id="@+id/text_container"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_item_height"
+            android:orientation="vertical"
+            android:weightSum="2"
+            android:paddingLeft="@dimen/category_left_padding">
+
+            <TextView
+                android:id="@+id/tv_miwok"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                tools:text="lutti"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:gravity="bottom"
+            />
+
+            <TextView
+                android:id="@+id/tv_default"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="top"
+                android:layout_weight="1"
+                tools:text="one"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@android:color/white"/>
+        </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.ramannada.mymiwok.MainActivity">
+
+    <TextView
+        android:id="@+id/tv_numbers"
+        android:text="@string/number"
+        style="@style/list_menu_style"
+        android:background="@android:color/holo_orange_dark"
+        />
+
+    <TextView
+        android:id="@+id/tv_family_members"
+        android:text="@string/family_member"
+        style="@style/list_menu_style"
+        android:background="@android:color/holo_green_dark"/>
+
+    <TextView
+        android:id="@+id/tv_colors"
+        android:text="@string/color"
+        style="@style/list_menu_style"
+        android:background="@android:color/holo_purple"/>
+
+    <TextView
+        android:id="@+id/tv_phrases"
+        android:text="@string/phrase"
+        style="@style/list_menu_style"
+        android:background="@android:color/holo_blue_light"/>
+
+</LinearLayout>
