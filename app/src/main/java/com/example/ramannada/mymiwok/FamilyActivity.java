@@ -49,7 +49,7 @@ public class FamilyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_family);
+        setContentView(R.layout.list_view);
 
         ArrayList<Words> words = new ArrayList<>();
 
@@ -74,7 +74,7 @@ public class FamilyActivity extends AppCompatActivity {
 
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
-        ListView listView = (ListView) findViewById(R.id.list_view_family);
+        ListView listView = (ListView) findViewById(R.id.list_view);
 
         listView.setAdapter(familyAdapter);
 

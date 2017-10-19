@@ -51,7 +51,7 @@ public class NumberActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_number);
+        setContentView(R.layout.list_view);
 
         ArrayList<Words> words = new ArrayList<>();
 
@@ -70,7 +70,7 @@ public class NumberActivity extends AppCompatActivity {
 
         WordsAdapter itemsAdapter = new WordsAdapter (this, words, R.color.category_numbers);
 
-        ListView listView = (ListView) findViewById(R.id.list_view_number);
+        ListView listView = (ListView) findViewById(R.id.list_view);
 
         listView.setAdapter(itemsAdapter);
 
@@ -81,6 +81,7 @@ public class NumberActivity extends AppCompatActivity {
 
                 int result = audioManager.requestAudioFocus(afChangeListener,AudioManager.STREAM_MUSIC,
                         AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
 
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                     releaseMediaPlayer();

@@ -50,7 +50,7 @@ public class PhraseActiviy extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_phrase_activiy);
+        setContentView(R.layout.list_view);
 
         ArrayList<Words> phrase = new ArrayList<>();
 
@@ -64,7 +64,7 @@ public class PhraseActiviy extends AppCompatActivity{
 
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
-        ListView listView = (ListView) findViewById(R.id.list_view_phrase);
+        ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(wordsAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

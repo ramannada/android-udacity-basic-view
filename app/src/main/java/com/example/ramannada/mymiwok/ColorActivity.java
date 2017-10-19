@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -51,7 +50,7 @@ public class ColorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_color);
+        setContentView(R.layout.list_view);
 
         ArrayList<Words> words = new ArrayList<>();
 
@@ -69,7 +68,7 @@ public class ColorActivity extends AppCompatActivity {
 
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
-        final ListView listView = (ListView) findViewById(R.id.list_view_color);
+        final ListView listView = (ListView) findViewById(R.id.list_view);
 
         listView.setAdapter(wordsAdapter);
 
