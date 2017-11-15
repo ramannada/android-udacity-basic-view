@@ -3,15 +3,20 @@ package com.example.ramannada.mymiwok;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ColorActivity extends AppCompatActivity {
+
+public class ColorFragment extends Fragment {
     private MediaPlayer mediaPlayer;
     private AudioManager audioManager;
     private MediaPlayer.OnCompletionListener mpCompletionListener = new MediaPlayer.OnCompletionListener() {
@@ -47,10 +52,13 @@ public class ColorActivity extends AppCompatActivity {
         }
     };
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_view);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        TextView textView = new TextView(getActivity());
+
+        View rootView = inflater.inflate(R.layout.list_view, container, false);
 
         ArrayList<Words> words = new ArrayList<>();
 
@@ -64,13 +72,13 @@ public class ColorActivity extends AppCompatActivity {
         words.add(new Words("mustard yellow", "chiwiita", R.drawable.color_mustard_yellow, R.raw.color_mustard_yellow));
 //        words.add(new Words("blue", "biru", R.drawable.));
 
-        WordsAdapter wordsAdapter = new WordsAdapter(this, words, R.color.category_color);
+        WordsAdapter wordsAdapter = new WordsAdapter(getActivity(), words, R.color.category_color);
 
-        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-
-        final ListView listView = (ListView) findViewById(R.id.list_view);
+        final ListView listView = rootView.findViewById(R.id.list_view);
 
         listView.setAdapter(wordsAdapter);
+
+        audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -82,17 +90,18 @@ public class ColorActivity extends AppCompatActivity {
 
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                     releaseMediaPlayer();
-                    mediaPlayer = MediaPlayer.create(ColorActivity.this, words.getAudio());
+                    mediaPlayer = MediaPlayer.create(getActivity(), words.getAudio());
                     mediaPlayer.start();
                     mediaPlayer.setOnCompletionListener(mpCompletionListener);
                 }
             }
         });
 
+        return rootView;
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         releaseMediaPlayer();
     }
@@ -106,4 +115,5 @@ public class ColorActivity extends AppCompatActivity {
             audioManager.abandonAudioFocus(afChangeListener);
         }
     }
+
 }

@@ -42,13 +42,13 @@ public class WordsAdapter extends ArrayAdapter<Words> {
         Words currentWorld = getItem(position);
 
         // Find the TextView in the list_item.xml layout with the ID version_name
-        TextView defaultTextView = (TextView) listItemView.findViewById(R.id.tv_default);
+        TextView defaultTextView = listItemView.findViewById(R.id.tv_default);
         // Get the version name from the current AndroidFlavor object and
         // set this text on the name TextView
         defaultTextView.setText(currentWorld.getOriginal());
 
         // Find the TextView in the list_item.xml layout with the ID version_number
-        TextView numberTextView = (TextView) listItemView.findViewById(R.id.tv_miwok);
+        TextView numberTextView = listItemView.findViewById(R.id.tv_miwok);
         // Get the version number from the current AndroidFlavor object and
         // set this text on the number TextView
         numberTextView.setText(currentWorld.getMiwok());

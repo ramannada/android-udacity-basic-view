@@ -1,6 +1,8 @@
 package com.example.ramannada.mymiwok;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,41 +15,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView number = (TextView) findViewById(R.id.tv_numbers);
-        TextView color = (TextView) findViewById(R.id.tv_colors);
-        TextView family = (TextView) findViewById(R.id.tv_family_members);
-        TextView phrase = (TextView) findViewById(R.id.tv_phrases);
+        ViewPager viewPager = findViewById(R.id.viewpager);
+        FragmentAdapter fragmentAdapter = new FragmentAdapter(this, getSupportFragmentManager());
 
-        number.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, NumberActivity.class);
-                startActivity(i);
-            }
-        });
+        viewPager.setAdapter(fragmentAdapter);
 
-        color.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, ColorActivity.class);
-                startActivity(i);
-            }
-        });
+        TabLayout tabLayout = findViewById(R.id.tab_layout_words);
+        tabLayout.setupWithViewPager(viewPager);
 
-        family.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, FamilyActivity.class);
-                startActivity(i);
-            }
-        });
-
-        phrase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, PhraseActiviy.class);
-                startActivity(i);
-            }
-        });
     }
 }

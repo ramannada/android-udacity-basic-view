@@ -1,18 +1,23 @@
 package com.example.ramannada.mymiwok;
 
 import android.content.Context;
-import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+
 import java.util.ArrayList;
 
-public class NumberActivity extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class NumberFragment extends Fragment {
     private MediaPlayer mediaPlayer;
     private AudioManager audioManager;
     private MediaPlayer.OnCompletionListener mpCompletionListener = new MediaPlayer.OnCompletionListener() {
@@ -36,7 +41,7 @@ public class NumberActivity extends AppCompatActivity {
                     mediaPlayer.pause();
                     break;
                 case  AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK:
-                    mediaPlayer.pause();;
+                    mediaPlayer.pause();
                     break;
                 case AudioManager.AUDIOFOCUS_LOSS:
                     releaseMediaPlayer();
@@ -48,10 +53,19 @@ public class NumberActivity extends AppCompatActivity {
         }
     };
 
+
+
+    public NumberFragment() {
+        // Required empty public constructor
+    }
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_view);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+
+        View rootView = inflater.inflate(R.layout.list_view, container, false);
 
         ArrayList<Words> words = new ArrayList<>();
 
@@ -66,13 +80,13 @@ public class NumberActivity extends AppCompatActivity {
         words.add(new Words("nine", "wo'e", R.drawable.number_nine, R.raw.number_nine));
         words.add(new Words("ten", "na' aacha", R.drawable.number_ten, R.raw.number_ten));
 
-        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
 
-        WordsAdapter itemsAdapter = new WordsAdapter (this, words, R.color.category_numbers);
+        WordsAdapter wordsAdapter = new WordsAdapter (getActivity(), words, R.color.category_numbers);
 
-        ListView listView = (ListView) findViewById(R.id.list_view);
+        ListView listView = rootView.findViewById(R.id.list_view);
 
-        listView.setAdapter(itemsAdapter);
+        listView.setAdapter(wordsAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -85,7 +99,7 @@ public class NumberActivity extends AppCompatActivity {
 
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                     releaseMediaPlayer();
-                    mediaPlayer = MediaPlayer.create(NumberActivity.this, words.getAudio());
+                    mediaPlayer = MediaPlayer.create(getActivity(), words.getAudio());
                     mediaPlayer.start();
                     mediaPlayer.setOnCompletionListener(mpCompletionListener);
                 }
@@ -93,13 +107,16 @@ public class NumberActivity extends AppCompatActivity {
             }
         });
 
+        return rootView;
     }
 
+
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         releaseMediaPlayer();
     }
+
 
     private void releaseMediaPlayer() {
         if (this.mediaPlayer != null) {
@@ -110,5 +127,4 @@ public class NumberActivity extends AppCompatActivity {
             audioManager.abandonAudioFocus(afChangeListener);
         }
     }
-
 }
